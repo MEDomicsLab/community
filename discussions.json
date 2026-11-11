@@ -1,0 +1,68 @@
+{
+  "questions": {
+    "category": "questions"
+  },
+  "feedback": {
+    "category": "feedback"
+  },
+  "proof_of_concept": {
+    "mediml_reviews": {
+      "category": "mediml-reviews",
+      "project": "MEDiml",
+      "maintainers": [
+        "MahdiAll99",
+        "simonprovost"
+      ]
+    }
+  },
+  "excluded_discussions": [],
+  "scopes": {
+    "MEDomicsLab": {
+      "label": "medomicslab",
+      "maintainers": [
+        "simonprovost",
+        "mvallieres"
+      ]
+    },
+    "MEDiml": {
+      "label": "mediml",
+      "maintainers": [
+        "MahdiAll99",
+        "simonprovost",
+        "mvallieres"
+      ]
+    },
+    "MED3pa": {
+      "label": "med3pa",
+      "maintainers": [
+        "Thedetektive",
+        "Olivier998",
+        "simonprovost",
+        "mvallieres"
+      ]
+    },
+    "MEDfl": {
+      "label": "medfl",
+      "maintainers": [
+        "ouaelesi",
+        "simonprovost",
+        "mvallieres"
+      ]
+    },
+    "MEDProfiles": {
+      "label": "medprofiles",
+      "maintainers": [
+        "NicoLongfield",
+        "simonprovost",
+        "mvallieres"
+      ]
+    },
+    "Other": {
+      "label": "other",
+      "maintainers": [
+        "simonprovost",
+        "mvallieres"
+      ]
+    }
+  }
+}

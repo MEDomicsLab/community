@@ -1,0 +1,24 @@
+name: Route discussions
+
+on:
+  discussion:
+    types: [created]
+
+permissions:
+  contents: read
+  discussions: write
+
+concurrency:
+  group: route-discussion-${{ github.event.discussion.node_id }}
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Apply scope labels and notify maintainers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/discussions.py
