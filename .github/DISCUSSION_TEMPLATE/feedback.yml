@@ -1,0 +1,36 @@
+labels: [feedback, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ![Feedback about MEDomicsLab and its projects](https://github.com/MEDomicsLab/community/blob/main/assets/discussions/general/feedback/feedback.png?raw=true&v=20261111-2)
+  - type: dropdown
+    id: project
+    attributes:
+      label: Scope
+      options:
+        - MEDomicsLab
+        - MEDiml
+        - MED3pa
+        - MEDfl
+        - MEDProfiles
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What did you encounter?
+      description: Name the part of the project you used and describe what worked or caused difficulty.
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: What would you change?
+      description: Describe the change and how it would help, if you have a suggestion.
+  - type: input
+    id: links
+    attributes:
+      label: Related links
+      description: Add links to relevant issues, discussions, or documentation.

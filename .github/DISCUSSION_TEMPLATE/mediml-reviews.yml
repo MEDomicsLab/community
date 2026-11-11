@@ -1,0 +1,45 @@
+title: "[MEDiml review] "
+labels: [proof-of-concept, mediml, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ![MEDiml Proof of Concept Review](https://github.com/MEDomicsLab/community/blob/main/assets/discussions/proof-of-concept/mediml-reviews/mediml-review.png?raw=true&v=20261111-2)
+
+        Submit one review per study round. Use the pinned briefing to check which release and dataset to test. Report blockers during the round so the maintainers can respond. Share only logs or screenshots that contain no patient information.
+  - type: input
+    id: round
+    attributes:
+      label: Study round
+      description: Use the round name from the pinned briefing.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Versions and environment
+      description: Give the app version, operating system, and dataset version. Add the package and Python versions if you tested the package directly.
+    validations:
+      required: true
+  - type: dropdown
+    id: completion
+    attributes:
+      label: Workflow completion
+      options:
+        - Completed the assigned workflow
+        - Completed part of the assigned workflow
+        - Could not start the assigned workflow
+    validations:
+      required: true
+  - type: textarea
+    id: observations
+    attributes:
+      label: What did you test and observe?
+      description: List the steps you reached, what worked, and where you got stuck. For unexpected results, describe what you expected and include the settings or steps needed to check the finding.
+    validations:
+      required: true
+  - type: textarea
+    id: follow_up
+    attributes:
+      label: Suggested changes and related issues
+      description: List changes you would make and link to any issues you already opened.
