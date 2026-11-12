@@ -547,6 +547,129 @@ body:
   - type: markdown
     attributes:
       value: |
+        ### MEDiml-app documentation
+
+        [MEDiml-app documentation ↗](https://medomicslab.gitbook.io/mediml-app-docs)
+  - type: dropdown
+    id: app_docs_clarity
+    attributes:
+      label: "MEDiml-app documentation clarity"
+      description: "How clear was the documentation? Choose **Did not use** if you did not read it."
+      multiple: false
+      options:
+        - "1 - Very clear"
+        - "2 - Clear"
+        - "3 - Somewhat clear"
+        - "4 - Unclear"
+        - "5 - Very unclear"
+        - "Did not use"
+    validations:
+      required: true
+  - type: dropdown
+    id: app_docs_completeness
+    attributes:
+      label: "MEDiml-app documentation completeness (optional)"
+      description: "Did it have the information you needed?"
+      multiple: false
+      options:
+        - "Yes, everything I needed"
+        - "Mostly, with a few gaps"
+        - "No, important information was missing"
+    validations:
+      required: false
+  - type: textarea
+    id: app_docs_comments
+    attributes:
+      label: "MEDiml-app documentation comments and suggestions (optional)"
+      description: "What was missing, unclear, outdated or did not match the app? Include page links where possible."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ### MEDiml-pkg documentation
+
+        [MEDiml-pkg documentation ↗](https://mediml.readthedocs.io/en/latest/index.html)
+  - type: dropdown
+    id: pkg_docs_clarity
+    attributes:
+      label: "MEDiml-pkg documentation clarity"
+      description: "How clear was the documentation? Choose **Did not use** if you did not read it."
+      multiple: false
+      options:
+        - "1 - Very clear"
+        - "2 - Clear"
+        - "3 - Somewhat clear"
+        - "4 - Unclear"
+        - "5 - Very unclear"
+        - "Did not use"
+    validations:
+      required: true
+  - type: dropdown
+    id: pkg_docs_completeness
+    attributes:
+      label: "MEDiml-pkg documentation completeness (optional)"
+      description: "Did it have the information you needed?"
+      multiple: false
+      options:
+        - "Yes, everything I needed"
+        - "Mostly, with a few gaps"
+        - "No, important information was missing"
+    validations:
+      required: false
+  - type: textarea
+    id: pkg_docs_comments
+    attributes:
+      label: "MEDiml-pkg documentation comments and suggestions (optional)"
+      description: "What was missing, unclear, outdated or did not match the app? Include page links where possible."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ### Demonstration video
+  - type: dropdown
+    id: video_helpfulness
+    attributes:
+      label: "Demonstration video helpfulness"
+      description: "How helpful was the video for completing the study? Choose **Did not watch** if you did not watch it."
+      multiple: false
+      options:
+        - "1 - Very helpful"
+        - "2 - Helpful"
+        - "3 - Somewhat helpful"
+        - "4 - Not very helpful"
+        - "5 - Not helpful"
+        - "Did not watch"
+    validations:
+      required: true
+  - type: dropdown
+    id: video_improvements
+    attributes:
+      label: "Demonstration video improvements (optional)"
+      description: "What would make the video more useful? Select all that apply."
+      multiple: true
+      options:
+        - "Slower pace"
+        - "More detail on some steps"
+        - "Shorter video"
+        - "Chapters or timestamps"
+        - "Subtitles or captions"
+        - "Clearer audio"
+        - "Larger or zoomed-in screen recording"
+        - "Match the current app version"
+    validations:
+      required: false
+  - type: textarea
+    id: video_comments
+    attributes:
+      label: "Demonstration video comments and suggestions (optional)"
+      description: "Which parts helped most, and which parts were confusing or skipped too quickly? Mention timestamps if you can."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
         ### Anything else?
   - type: textarea
     id: overall
