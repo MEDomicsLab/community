@@ -6,7 +6,15 @@ body:
       value: |
         ![MEDiml Proof of Concept Review](https://github.com/MEDomicsLab/community/blob/main/assets/discussions/proof-of-concept/mediml-reviews/mediml-review.png?raw=true&v=20261111-2)
 
-        Allo! 🍁 Thanks for testing MEDiml. Please rate each step you tried and explain what made it easy or difficult. If you got blocked, tell us where you stopped and choose **Not attempted** for the steps you did not reach.
+        Allo! ⚜️ Thanks for testing MEDiml. Please rate each step you tried and explain what made it easy or difficult. If you got blocked, tell us where you stopped and choose **Not attempted** for the steps you did not reach.
+
+        ### Worth knowing before you start
+
+        - **Open the console first.** In MEDiml-app, go to **Help → Toggle Developer Tools** in the top menu and select the **Console** tab. Keep it open while you test: errors often show up there even when the app shows nothing.
+        - **Screenshots are strongly recommended.** Capture the screen whenever something fails or looks confusing. You can paste or drag images straight into any text box below.
+        - **Full logs are strongly recommended.** When something fails, copy the whole console log, not just the last line. The easiest way is to right-click in the console, choose **Save as…**, and drag the saved file into the relevant text box. To paste the log as text instead, wrap it in `<details><summary>Log</summary>` and `</details>` so it stays collapsed.
+        - **Write down what you did just before the problem**: the step, the node or button you used, and whether anything was still running.
+        - **Remove personal information** before you post. Logs and screenshots can show your username in file paths.
 
         [Study content ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc)
 
@@ -27,14 +35,28 @@ body:
     id: app_version
     attributes:
       label: "MEDiml-app version"
+      description: "Shown on the app's home page."
+      placeholder: "e.g. v1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: operating_system
+    attributes:
+      label: "Operating system"
+      multiple: false
+      options:
+        - "Windows"
+        - "macOS"
+        - "Linux"
     validations:
       required: true
   - type: input
-    id: operating_system
+    id: os_version
     attributes:
-      label: "Operating system and version"
+      label: "Operating system version (optional)"
+      placeholder: "e.g. Windows 11 23H2, macOS 15.1, Ubuntu 24.04"
     validations:
-      required: true
+      required: false
   - type: input
     id: ram
     attributes:
@@ -209,7 +231,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### 4. DataManager and radiomics pre-checks
+        ### 4. DataManager: radiomics pre-checks
 
         Selecting the dataset, ROI definitions and output folders, then running and interpreting the pre-checks.
 
@@ -217,7 +239,7 @@ body:
   - type: dropdown
     id: prechecks_difficulty
     attributes:
-      label: "DataManager and radiomics pre-checks difficulty"
+      label: "DataManager: radiomics pre-checks difficulty"
       description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
       multiple: false
       options:
@@ -232,12 +254,12 @@ body:
   - type: textarea
     id: prechecks_feedback
     attributes:
-      label: "DataManager and radiomics pre-checks feedback"
+      label: "DataManager: radiomics pre-checks feedback"
       description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
   - type: textarea
     id: prechecks_ui_ux
     attributes:
-      label: "DataManager and radiomics pre-checks UI and UX (optional)"
+      label: "DataManager: radiomics pre-checks UI and UX (optional)"
       description: "Selecting paths and modalities, understanding the pre-check plots, and using them to choose extraction settings."
       placeholder: |
         UI (labels, layout, controls, or plots):
@@ -248,7 +270,7 @@ body:
   - type: textarea
     id: prechecks_bugs
     attributes:
-      label: "DataManager and radiomics pre-checks bug reports"
+      label: "DataManager: radiomics pre-checks bug reports"
       description: "Issue link(s), if any."
   - type: markdown
     attributes:
@@ -299,13 +321,21 @@ body:
       value: |
         ### 6. Learning Module
 
-        Loading the Full POC feature sets supplied in the guide, importing or building scenes, and training and comparing models.
+        Training and comparing models in three scenes, then finalizing the chosen model. Rate each part below.
 
         [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module)
-  - type: dropdown
-    id: learning_difficulty
+  - type: markdown
     attributes:
-      label: "Learning Module difficulty"
+      value: |
+        #### 6.1 Scene 1: Which imaging modality performs best?
+
+        Downloading the Full POC feature sets, then importing or building the `STS_Modalities_Eval` scene, configuring it, running the four modality pipelines (CT, PET, T1, T2FS) and comparing their results.
+
+        [Guide for this part ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module#scene-1-which-imaging-modality-performs-best)
+  - type: dropdown
+    id: learning_scene1_difficulty
+    attributes:
+      label: "6.1 Scene 1 difficulty"
       description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
       multiple: false
       options:
@@ -318,15 +348,15 @@ body:
     validations:
       required: true
   - type: textarea
-    id: learning_feedback
+    id: learning_scene1_feedback
     attributes:
-      label: "Learning Module feedback"
+      label: "6.1 Scene 1 feedback"
       description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
   - type: textarea
-    id: learning_ui_ux
+    id: learning_scene1_ui_ux
     attributes:
-      label: "Learning Module UI and UX (optional)"
-      description: "Importing scenes, updating file paths, configuring nodes, following training progress, and comparing model performance."
+      label: "6.1 Scene 1 UI and UX (optional)"
+      description: "Downloading and placing the feature sets, importing the scene, updating file paths, configuring nodes, following training progress, and comparing the four pipelines."
       placeholder: |
         UI (labels, layout, controls, or plots):
 
@@ -334,9 +364,141 @@ body:
     validations:
       required: false
   - type: textarea
-    id: learning_bugs
+    id: learning_scene1_bugs
     attributes:
-      label: "Learning Module bug reports"
+      label: "6.1 Scene 1 bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        #### 6.2 Scene 2: Which feature family performs best?
+
+        Importing or building the `STS_Complexity_Analysis` scene, configuring it for the morphological, intensity and texture features of the best modality from Scene 1, running it and comparing the three feature families.
+
+        [Guide for this part ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module#scene-2-which-feature-family-performs-best)
+  - type: dropdown
+    id: learning_scene2_difficulty
+    attributes:
+      label: "6.2 Scene 2 difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: learning_scene2_feedback
+    attributes:
+      label: "6.2 Scene 2 feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: learning_scene2_ui_ux
+    attributes:
+      label: "6.2 Scene 2 UI and UX (optional)"
+      description: "Importing the scene, updating file paths, configuring the Design and Data nodes, following training progress, and comparing the three feature families."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: learning_scene2_bugs
+    attributes:
+      label: "6.2 Scene 2 bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        #### 6.3 Scene 3: Comparing learning algorithms
+
+        Importing or building the `STS_Algorithms_Analysis` scene, configuring it to compare Logistic Regression, XGBoost and the automated Best Model on the feature family chosen in Scene 2, running it and choosing the final model.
+
+        [Guide for this part ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module#scene-3-comparing-learning-algorithms)
+  - type: dropdown
+    id: learning_scene3_difficulty
+    attributes:
+      label: "6.3 Scene 3 difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: learning_scene3_feedback
+    attributes:
+      label: "6.3 Scene 3 feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: learning_scene3_ui_ux
+    attributes:
+      label: "6.3 Scene 3 UI and UX (optional)"
+      description: "Importing the scene, updating file paths, configuring the Split and Radiomics Learner nodes, following training progress, and comparing the three algorithms."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: learning_scene3_bugs
+    attributes:
+      label: "6.3 Scene 3 bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        #### 6.4 Finalize model
+
+        Opening the results of the chosen pipeline and using **Finalize Model** to retrain it on the entire learning dataset before the final holdout evaluation.
+
+        [Guide for this part ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module#finalize-model)
+  - type: dropdown
+    id: learning_finalize_difficulty
+    attributes:
+      label: "6.4 Finalize model difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: learning_finalize_feedback
+    attributes:
+      label: "6.4 Finalize model feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: learning_finalize_ui_ux
+    attributes:
+      label: "6.4 Finalize model UI and UX (optional)"
+      description: "Finding the results panel, using the Finalize Model action, and understanding what the finalized model is and where it is saved."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: learning_finalize_bugs
+    attributes:
+      label: "6.4 Finalize model bug reports"
       description: "Issue link(s), if any."
   - type: markdown
     attributes:
