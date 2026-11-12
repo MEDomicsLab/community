@@ -21,4 +21,5 @@ jobs:
       - name: Apply scope labels and notify maintainers
         env:
           GH_TOKEN: ${{ github.token }}
+          DISCUSSION_EDIT_TOKEN: ${{ secrets.DISCUSSION_EDIT_TOKEN }}
         run: python3 .github/scripts/discussions.py

@@ -1,4 +1,4 @@
-title: "[MEDiml review] "
+title: "[MEDiml review] Automatic name detection (do not edit)"
 labels: [proof-of-concept, mediml, needs-triage]
 body:
   - type: markdown
@@ -6,40 +6,388 @@ body:
       value: |
         ![MEDiml Proof of Concept Review](https://github.com/MEDomicsLab/community/blob/main/assets/discussions/proof-of-concept/mediml-reviews/mediml-review.png?raw=true&v=20261111-2)
 
-        Submit one review per study round. Use the pinned briefing to check which release and dataset to test. Report blockers during the round so the maintainers can respond. Share only logs or screenshots that contain no patient information.
+        Allo! 🍁 Thanks for testing MEDiml. Please rate each step you tried and explain what made it easy or difficult. If you got blocked, tell us where you stopped and choose **Not attempted** for the steps you did not reach.
+
+        [Study content ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc)
+
+        If you found a reproducible bug, open an issue in the affected project and paste its link in the relevant step below. Leave the bug field blank if there was no bug. [MEDiml-app issues ↗](https://github.com/MEDomicsLab/MEDiml-app/issues) · [MEDiml-pkg issues ↗](https://github.com/MEDomicsLab/MEDiml-pkg/issues)
   - type: input
     id: round
     attributes:
-      label: Study round
-      description: Use the round name from the pinned briefing.
+      label: "Study round"
+      description: "Use the round name from the briefing."
+      value: "Soft Tissue Sarcoma"
     validations:
       required: true
-  - type: textarea
-    id: environment
+  - type: markdown
     attributes:
-      label: Versions and environment
-      description: Give the app version, operating system, and dataset version. Add the package and Python versions if you tested the package directly.
+      value: |
+        ### Versions and environment
+  - type: input
+    id: app_version
+    attributes:
+      label: "MEDiml-app version"
     validations:
       required: true
+  - type: input
+    id: operating_system
+    attributes:
+      label: "Operating system and version"
+    validations:
+      required: true
+  - type: input
+    id: ram
+    attributes:
+      label: "RAM (optional)"
+      placeholder: "e.g. 16 GB"
+    validations:
+      required: false
+  - type: input
+    id: cpu
+    attributes:
+      label: "CPU (optional)"
+    validations:
+      required: false
+  - type: input
+    id: pkg_version
+    attributes:
+      label: "MEDiml-pkg version (optional)"
+      description: "Only if you tested the package directly."
+    validations:
+      required: false
+  - type: input
+    id: python_version
+    attributes:
+      label: "Python version (optional)"
+      description: "Only if you tested the package directly."
+    validations:
+      required: false
   - type: dropdown
-    id: completion
+    id: dataset
     attributes:
-      label: Workflow completion
+      label: "Dataset used"
+      multiple: false
       options:
-        - Completed the assigned workflow
-        - Completed part of the assigned workflow
-        - Could not start the assigned workflow
+        - "Light (10 patients)"
+        - "Full (51 patients)"
+        - "Both Light and Full"
+        - "Could not download the dataset"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ### 1. Installation
+
+        Downloading the installer, installing MEDiml-app, and opening it for the first time.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/quick-start)
+  - type: dropdown
+    id: installation_difficulty
+    attributes:
+      label: "Installation difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
     validations:
       required: true
   - type: textarea
-    id: observations
+    id: installation_feedback
     attributes:
-      label: What did you test and observe?
-      description: List the steps you reached, what worked, and where you got stuck. For unexpected results, describe what you expected and include the settings or steps needed to check the finding.
+      label: "Installation feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: installation_ui_ux
+    attributes:
+      label: "Installation UI and UX (optional)"
+      description: "Installer instructions, first-launch messages, setup progress, and whether you knew the app was ready."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: installation_bugs
+    attributes:
+      label: "Installation bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 2. Workspace and dataset download
+
+        Choosing a workspace and downloading the Light or Full dataset from the app.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc)
+  - type: dropdown
+    id: dataset_difficulty
+    attributes:
+      label: "Workspace and dataset download difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
     validations:
       required: true
   - type: textarea
-    id: follow_up
+    id: dataset_feedback
     attributes:
-      label: Suggested changes and related issues
-      description: List changes you would make and link to any issues you already opened.
+      label: "Workspace and dataset download feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: dataset_ui_ux
+    attributes:
+      label: "Workspace and dataset download UI and UX (optional)"
+      description: "Finding the workspace and download controls, understanding the Light and Full choices, and following download progress."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: dataset_bugs
+    attributes:
+      label: "Workspace and dataset download bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 3. Single Scan Extraction
+
+        Loading the example scans and tumor regions, using the viewer, and trying extraction settings.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/1.-single-scan-extraction)
+  - type: dropdown
+    id: single_scan_difficulty
+    attributes:
+      label: "Single Scan Extraction difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: single_scan_feedback
+    attributes:
+      label: "Single Scan Extraction feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: single_scan_ui_ux
+    attributes:
+      label: "Single Scan Extraction UI and UX (optional)"
+      description: "Adding and connecting nodes, editing extraction settings, viewing tumor contours, and finding the extracted features."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: single_scan_bugs
+    attributes:
+      label: "Single Scan Extraction bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 4. DataManager and radiomics pre-checks
+
+        Selecting the dataset, ROI definitions and output folders, then running and interpreting the pre-checks.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/2.-datamanager-radiomics-pre-checks)
+  - type: dropdown
+    id: prechecks_difficulty
+    attributes:
+      label: "DataManager and radiomics pre-checks difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: prechecks_feedback
+    attributes:
+      label: "DataManager and radiomics pre-checks feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: prechecks_ui_ux
+    attributes:
+      label: "DataManager and radiomics pre-checks UI and UX (optional)"
+      description: "Selecting paths and modalities, understanding the pre-check plots, and using them to choose extraction settings."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: prechecks_bugs
+    attributes:
+      label: "DataManager and radiomics pre-checks bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 5. BatchExtractor
+
+        Configuring batch extraction, running it across the dataset, and checking the logs and feature files.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/3.-batchextractor)
+  - type: dropdown
+    id: batch_difficulty
+    attributes:
+      label: "BatchExtractor difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: batch_feedback
+    attributes:
+      label: "BatchExtractor feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: batch_ui_ux
+    attributes:
+      label: "BatchExtractor UI and UX (optional)"
+      description: "Choosing input and output paths, configuring extraction, following progress, and understanding completion or error messages."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: batch_bugs
+    attributes:
+      label: "BatchExtractor bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 6. Learning Module
+
+        Loading the Full POC feature sets supplied in the guide, importing or building scenes, and training and comparing models.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/4.-learning-module)
+  - type: dropdown
+    id: learning_difficulty
+    attributes:
+      label: "Learning Module difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: learning_feedback
+    attributes:
+      label: "Learning Module feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: learning_ui_ux
+    attributes:
+      label: "Learning Module UI and UX (optional)"
+      description: "Importing scenes, updating file paths, configuring nodes, following training progress, and comparing model performance."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: learning_bugs
+    attributes:
+      label: "Learning Module bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### 7. Results Analysis
+
+        Inspecting feature importance, interpreting the results, and comparing them with the reference study.
+
+        [Guide for this step ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc/5.-results-analysis-and-discussion)
+  - type: dropdown
+    id: results_difficulty
+    attributes:
+      label: "Results Analysis difficulty"
+      description: "Rate the effort needed to complete this step. If you tried but got blocked, rate your experience and explain where you stopped below."
+      multiple: false
+      options:
+        - "1 - Very easy"
+        - "2 - Easy"
+        - "3 - Moderate"
+        - "4 - Difficult"
+        - "5 - Very difficult"
+        - "Not attempted"
+    validations:
+      required: true
+  - type: textarea
+    id: results_feedback
+    attributes:
+      label: "Results Analysis feedback"
+      description: "Explain your rating. What worked, what was confusing, and where did you stop if you could not finish? Leave blank if you did not attempt this step."
+  - type: textarea
+    id: results_ui_ux
+    attributes:
+      label: "Results Analysis UI and UX (optional)"
+      description: "Reading plots and feature names, navigating between results, and understanding how the findings relate to the reference study."
+      placeholder: |
+        UI (labels, layout, controls, or plots):
+
+        UX (navigation, instructions, progress, or recovery from an error):
+    validations:
+      required: false
+  - type: textarea
+    id: results_bugs
+    attributes:
+      label: "Results Analysis bug reports"
+      description: "Issue link(s), if any."
+  - type: markdown
+    attributes:
+      value: |
+        ### Anything else?
+  - type: textarea
+    id: overall
+    attributes:
+      label: "Overall feedback"
+      description: "What would you keep, and what would you change first? Add any comments from your area of expertise."

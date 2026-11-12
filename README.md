@@ -32,3 +32,5 @@ Edit [`discussions.json`](discussions.json) to update project labels and who get
 - `excluded_discussions` lists guides and briefings that should skip routing.
 
 List usernames in the order they should be mentioned.
+
+Automatic review titles use the `DISCUSSION_EDIT_TOKEN` Actions repository secret: a fine-grained personal access token with **Discussions: Read and write** access to `MEDomicsLab/community`. Replace the secret when the token expires. Maintainer notifications use the built-in GitHub Actions token.

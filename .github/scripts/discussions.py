@@ -13,12 +13,16 @@ GENERAL_MESSAGES = {
 REVIEW_NOTIFICATION_PATTERN = r"Please triage this .+ review\."
 
 
-def graphql(query, **variables):
+def graphql(query, token=None, **variables):
+    environment = os.environ.copy()
+    if token:
+        environment["GH_TOKEN"] = token
     result = subprocess.run(
         ["gh", "api", "graphql", "--input", "-"],
         input=json.dumps({"query": query, "variables": variables}),
         text=True,
         capture_output=True,
+        env=environment,
     )
     if result.returncode:
         raise RuntimeError(result.stderr.strip() or "GitHub GraphQL request failed.")
@@ -51,6 +55,43 @@ def already_notified(comments, notification_pattern):
             (comment["body"].splitlines() or [""])[0],
         )
         for comment in comments
+    )
+
+
+def rename_review(config, event):
+    discussion = event["discussion"]
+    if discussion["number"] in config["excluded_discussions"]:
+        return
+    review = next(
+        (
+            entry
+            for entry in config["proof_of_concept"].values()
+            if entry["category"] == discussion["category"]["slug"]
+        ),
+        None,
+    )
+    if review is None:
+        return
+    title_prefix = f"[{review['project']} review]"
+    if discussion.get("title") != f"{title_prefix} Automatic name detection (do not edit)":
+        return
+    token = os.environ.get("DISCUSSION_EDIT_TOKEN")
+    if not token:
+        raise ValueError(
+            "Add the DISCUSSION_EDIT_TOKEN repository secret with Discussions read and write "
+            "permission to enable automatic review titles."
+        )
+    graphql(
+        """
+        mutation($id: ID!, $title: String!) {
+          updateDiscussion(input: {discussionId: $id, title: $title}) {
+            discussion { id }
+          }
+        }
+        """,
+        token=token,
+        id=discussion["node_id"],
+        title=f"{title_prefix} {discussion['user']['login']}",
     )
 
 
@@ -146,6 +187,7 @@ def main():
     config = json.loads(CONFIG_PATH.read_text())
     event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
     route(config, event)
+    rename_review(config, event)
 
 
 if __name__ == "__main__":
