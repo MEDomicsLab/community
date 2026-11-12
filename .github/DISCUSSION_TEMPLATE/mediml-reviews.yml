@@ -8,6 +8,10 @@ body:
 
         Allo! ⚜️ Thanks for testing MEDiml. Please rate each step you tried and explain what made it easy or difficult. If you got blocked, tell us where you stopped and choose **Not attempted** for the steps you did not reach.
 
+        > [!IMPORTANT]
+        > ### [Open the study guide ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc)
+        > The Soft Tissue Sarcoma proof of concept, step by step. Follow it while you test, and keep it open next to the app. Each step below also links to its own part of the guide.
+
         ### Worth knowing before you start
 
         - **Open the console first.** In MEDiml-app, go to **Help → Toggle Developer Tools** in the top menu and select the **Console** tab. Keep it open while you test: errors often show up there even when the app shows nothing.
@@ -15,8 +19,6 @@ body:
         - **Full logs are strongly recommended.** When something fails, copy the whole console log, not just the last line. The easiest way is to right-click in the console, choose **Save as…**, and drag the saved file into the relevant text box. To paste the log as text instead, wrap it in `<details><summary>Log</summary>` and `</details>` so it stays collapsed.
         - **Write down what you did just before the problem**: the step, the node or button you used, and whether anything was still running.
         - **Remove personal information** before you post. Logs and screenshots can show your username in file paths.
-
-        [Study content ↗](https://medomicslab.gitbook.io/mediml-app-docs/soft-tissue-sarcoma-poc)
 
         If you found a reproducible bug, open an issue in the affected project and paste its link in the relevant step below. Leave the bug field blank if there was no bug. [MEDiml-app issues ↗](https://github.com/MEDomicsLab/MEDiml-app/issues) · [MEDiml-pkg issues ↗](https://github.com/MEDomicsLab/MEDiml-pkg/issues)
   - type: input
