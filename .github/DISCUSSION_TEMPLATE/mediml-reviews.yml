@@ -628,6 +628,8 @@ body:
     attributes:
       value: |
         ### Demonstration video
+
+        [Link to the video ↗](https://youtu.be/NX-t1IpzXTg?si=rg_7vbMbONZ1jq7U)
   - type: dropdown
     id: video_helpfulness
     attributes:
